@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Bento Grid</title>
+    <style>
+
+        /* Bento Grid Setup */
+        .bento-grid {
+            display: grid;
+            gap: 16px;
+            grid-template-columns: 1fr; /* Mobile fallback */
+        }
+
+        /* Card Component Styling */
+        .card {
+            background-color: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            transition: transform 0.2s ease;
+        }
+        .card:hover {
+            transform: scale(1.2);
+        }
+        .tag {
+            align-self: flex-start;
+            background-color: #e2e8f0;
+            color: #ff914d;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+        .tag.breaking {
+            background-color: #fed7d7;
+            color: #c53030;
+        }
+        .card h2 {
+            font-size: 1.25rem;
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+        .card p {
+            color: #718096;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+        .time {
+            font-size: 0.8rem;
+            color: #a0aec0;
+            margin-top: 1rem;
+        }
+
+        /* Image utility for cards */
+        .card-img {
+            width: 100%;
+            height: 180px;
+            background-color: #cbd5e0;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            object-fit: cover;
+        }
+
+        /* Desktop Bento Layout Adjustment */
+        @media (width: 768px) {
+            .bento-grid {
+                grid-template-columns: repeat(4, 1fr);
+                grid-auto-rows: minmax(180px, auto);
+            }
+
+            /* Card 1: Lead Story (Large Visual Banner) */
+            .card-lead {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+            .card-lead .card-img {
+                height: 240px;
+            }
+            .card-lead h2 {
+                font-size: 1.75rem;
+            }
+
+            /* Card 2: Wide Secondary Story */
+            .card-wide {
+                grid-column: span 2;
+                grid-row: span 1;
+                flex-direction: row;
+                gap: 1.5rem;
+            }
+            .card-wide .card-img {
+                width: 40%;
+                height: 100%;
+                margin-bottom: 0;
+            }
+            .card-wide .card-content {
+                display: flex;
+                flex-direction: column;
+                width: 60%;
+            }
+
+            /* Card 3 & 4: Standard single column/row blocks */
+            .card-standard {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Today's Headlines</h1>
+
+    <div class="bento-grid">
+
+        <!-- 1. Lead Story Card (2x2) -->
+        <article class="card card-lead">
+            <div class="tag breaking">Breaking</div>
+            <div class="card-img" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+            <h2>Global Summit Announces Historic Climate Accord to Reduce Carbon Footprint</h2>
+            <p>Leaders from over 190 nations have finalized a sweeping agreement targeting an aggressive net-zero timeline, marking a massive shift in global energy policy.</p>
+            <div class="time">5 mins ago</div>
+        </article>
+
+        <!-- 2. Wide Card (2x1) -->
+        <article class="card card-wide">
+            <div class="card-img" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);"></div>
+            <div class="card-content">
+                <div class="tag">Tech</div>
+                <h2>Next-Gen Quantum Processors Hit Commercial Markets</h2>
+                <p>Tech giants roll out computing platforms capable of solving complex models in seconds.</p>
+                <div class="time">42 mins ago</div>
+            </div>
+        </article>
+
+        <!-- 3. Standard Card (1x1) -->
+        <article class="card card-standard">
+            <div class="tag">Markets</div>
+            <h2>Stocks Rally Amid New Trade Policy Reports</h2>
+            <p>Indexes see a sharp 2% jump following the late-morning economic reports.</p>
+            <div class="time">1 hour ago</div>
+        </article>
+
+        <!-- 4. Standard Card (1x1) -->
+        <article class="card card-standard">
+            <div class="tag">Culture</div>
+            <h2>Indie Film Sweeps National Awards</h2>
+            <p>A low-budget drama takes home top honors, stunning major production studios.</p>
+            <div class="time">2 hours ago</div>
+        </article>
+
+        <!-- 5. Tall Card / Quick Feed (1x2) -->
+        <article class="card card-tall">
+            <div class="tag">Quick Updates</div>
+            <ul class="feed-list">
+                <li class="feed-item"><strong>14:20</strong> - Local transit line reopens after maintenance.</li>
+                <li class="feed-item"><strong>13:05</strong> - Astronauts safely splash down in the Pacific.</li>
+                <li class="feed-item"><strong>11:40</strong> - Major city announces new urban park project.</li>
+                <li class="feed-item"><strong>10:15</strong> - Tech startup secures $50M in Series B funding.</li>
+            </ul>
+        </article>
+
+    </div>
+</div>
+
+</body>
+</html>

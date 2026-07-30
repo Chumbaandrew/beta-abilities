@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Institution page</title>
+    <link rel="stylesheet" href="dashboards.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+<div class="sidebar">
+    <div class="profilecard"></div>
+    <ul class="menu">
+        <li class="active" data-page="home">
+            <a href="#"><i class="ri-home-3-line"></i>
+                <span>Articles</span>
+            </a>
+        </li>
+
+        <li data-page="assessment">
+            <a href="#"><i class="ri-survey-line"></i>
+                <span>Assessment</span>
+            </a>
+        </li>
+
+        <li data-page="certification">
+            <a href="#"><i class="ri-verified-badge-line"></i>
+                <span>Certificate</span>
+            </a>
+        </li>
+
+        <li data-page="bill">
+            <a href="#"><i class="ri-wallet-3-line"></i>
+                <span>Billing</span>
+            </a>
+        </li>
+
+
+        <li data-page="support">
+            <a href="#"><i class="ri-customer-service-line"></i>
+                <span>Support</span>
+            </a>
+        </li>
+
+
+        <li class="logout" >
+            <a href="institution-login.html"><i class="ri-logout-box-line"></i>
+                <span>Log Out</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!--main_content-->
+
+<div class="maincontent">
+
+    <!--    title section-->
+    <div class="header--wrapper">
+        <div class="header--title">
+            <h2>Beta Abilities <i class="ri-hand-heart-line"></i></h2>
+        </div>
+        <div class="userinfo">
+            <div class="search--box">
+                <i class="fa-brands fa-sistrix" style="color: rgb(51, 51, 51);"></i>
+                <input type="text" placeholder="search...">
+            </div>
+            <i class="ri-search-2-line"></i>
+        </div>
+    </div>
+    <!--    card section-->
+    <div class="card--container">
+        <!-- section for home in user-->
+        <div id="home" class="page active" >
+
+            <div class="bento-grid">
+
+                <!-- 1. Lead Story Card (2x2) -->
+                <article class="card card-lead">
+                    <div class="tag breaking">Breaking</div>
+                    <div class="card-img" style="background-image:url('media/betapics/customer1.jpg');"></div>
+                    <h2>Meta Accused Of Using AI To Target Workers With Disabilities</h2>
+                    <p>The suit filed this week in federal court in Oakland said the company’s 8,000 layoffs disproportionately
+                        affected workers who missed work due to medical conditions or providing care for family members.“These claims lack merit and are not based on facts. Workforce management and organizational decisions were and are made by people, not AI,” said spokesperson Tracy Clayton.
+                    </p>
+                    <div class="time">5 mins ago</div>
+                </article>
+
+                <!-- 2. Wide Card (2x1) -->
+                <article class="card card-wide">
+                    <div class="card-img" style="background-image:url('media/betapics/customer2.jpg');"></div>
+                    <div class="card-content">
+                        <div class="tag">Nairobi</div>
+                        <h2>Colleges Likely Serving More Students With Autism Than They Realize</h2>
+                        <p>New estimates show that colleges are serving far more students with autism than previously thought and they may not even know it.</p>
+                        <div class="time">42 mins ago</div>
+                    </div>
+                </article>
+
+                <!-- 3. Standard Card (1x1) -->
+                <article class="card card-standard">
+                    <div class="tag">Kenya</div>
+                    <h2>Civil Aviation</h2>
+                    <p>Indexes see a sharp 2% jump following the late-morning economic reports.</p>
+                    <div class="time">1 hour ago</div>
+                </article>
+
+                <!-- 4. Standard Card (1x1) -->
+                <article class="card card-standard">
+                    <div class="tag">Africa</div>
+                    <h2>Disability Poverty:</h2>
+                    <p> Disabled campaigners have welcomed the temporary scrapping of VAT on electricity bills</p>
+                    <div class="time">2 hours ago</div>
+                </article>
+
+
+            </div>
+
+        </div>
+
+        <!--section for assessment-->
+        <div id="assessment" class="page ">
+            <div class="card--wrapper">
+
+                <div class="details--card--ass">
+                    <div class="card--header--ass">
+                        <i class="ri-glasses-line icon--ass"></i>
+                        <div class="amount-ass">
+                            <span class="title--ass">Visual impairment</span>
+                            <span class="amount-value--ass">Evaluate the organization in visual preparedness </span>
+                        </div>
+                    </div>
+                    <div class="bottom--ass">
+                        <span>20 questions</span>
+                        <div class="time--ass" id="visualStatus" ><i class="ri-timer-line"></i> 10min</div>
+                        <a href="visuallyimpaired.html" id="visualBtn" class="details--ass">Start <i class="ri-arrow-right-s-fill"></i></a>
+                    </div>
+                </div>
+
+                <div class="details--card--ass">
+                    <div class="card--header--ass">
+                        <i class="ri-speak-line icon--ass"></i>
+                        <div class="amount-ass">
+                            <span class="title--ass">Auditory impairment</span>
+                            <span class="amount-value--ass">Evaluate the organization in auditory preparedness </span>
+                        </div>
+                    </div>
+                    <div class="bottom--ass">
+                        <span>20 questions</span>
+                        <div class="time--ass" id="auditoryStatus" ><i class="ri-timer-line"></i> 10min</div>
+                        <a href="hearingimpaired.html" id="auditoryBtn" class="details--ass">Start <i class="ri-arrow-right-s-fill"></i></a>
+                    </div>
+                </div>
+
+                <div class="details--card--ass">
+                    <div class="card--header--ass">
+                        <i class="ri-file-line icon--ass"></i>
+                        <div class="amount-ass">
+                            <span class="title--ass">Policies & Procedures</span>
+                            <span class="amount-value--ass">Evaluate the organization's policies and procedures</span>
+                        </div>
+                    </div>
+                     <div class="bottom--ass">
+                         <span>20 questions</span>
+                         <div class="time--ass" id="policiesStatus" ><i class="ri-timer-line"></i> 10min</div>
+                         <a href="policiesandprocedures.html" id="policiesBtn" class="details--ass">Start <i class="ri-arrow-right-s-fill"></i></a>
+                     </div>
+
+                </div>
+
+                <div class="details--card--ass">
+                    <div class="card--header--ass">
+                        <i class="ri-user-line icon--ass"></i>
+                        <div class="amount-ass">
+                            <span class="title--ass">Physical impairment</span>
+                            <span class="amount-value--ass">Evaluate the organization's physical impairments structures</span>
+                        </div>
+                    </div>
+                    <div class="bottom--ass">
+                        <span>20 questions</span>
+                        <div class="time--ass" id="physicalStatus"  ><i class="ri-timer-line"></i> 10min</div>
+                        <a href="physicalimpairment.html" id="physicalBtn" class="details--ass">Start <i class="ri-arrow-right-s-fill"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--    section for certification-->
+        <div id="certification" class="page ">
+            <section class="cards-cert">
+
+                <div class="card-cert green">
+
+                    <div class="icon-cert">
+                        <i class="ri-glasses-line icon--ass"></i>
+                        <h1>Visual</h1>
+                    </div>
+
+                    <p>Total Score:  <span id="visualScore" class="marks">-</span></p>
+                    <p>percentage:   <span id="visualPercentage" class="marks">-</span></p>
+                    <p>performance:   <span id="visualRating" class="marks">-</span></p>
+
+                </div>
+
+                <div class="card-cert orange">
+
+                    <div class="icon-cert">
+                        <i class="ri-speak-line icon--ass"></i>
+                        <h1>Auditory</h1>
+                    </div>
+
+                    <p>Total Score:  <span id="auditoryScore" class="marks">-</span></p>
+                    <p>percentage:   <span id="auditoryPercentage" class="marks">-</span></p>
+                    <p>performance:   <span id="auditoryRating" class="marks">-</span></p>
+
+                </div>
+
+                <div class="card-cert purple">
+
+                    <div class="icon-cert">
+                        <i class="ri-user-line icon--ass"></i>
+                        <h1>Physical</h1>
+                    </div>
+
+                    <p>Total Score:  <span id="physicalScore" class="marks">-</span></p>
+                    <p>percentage:   <span id="physicalPercentage" class="marks">-</span></p>
+                    <p>performance:   <span id="physicalRating" class="marks">-</span></p>
+
+                </div>
+
+                <div class="card-cert brown">
+
+                    <div class="icon-cert">
+                        <i class="ri-file-line icon--ass"></i>
+                        <h1>Policies</h1>
+                    </div>
+
+                    <p>Total Score:  <span id="policiesScore" class="marks">-</span></p>
+                    <p>percentage:   <span id="policiesPercentage" class="marks">-</span></p>
+                    <p>performance:   <span id="policiesRating" class="marks">-</span></p>
+
+                </div>
+
+            </section>
+
+            <!-- MAIN GRID -->
+            <section class="dashboard">
+
+                <!-- Institution Details -->
+                <div class="panel">
+
+                    <h2>
+                        <i class="ri-building-line"></i>
+                        Institution Details
+                    </h2>
+
+                    <div class="details-cert">
+
+                        <div>
+                            <label>Institution</label>
+                            <span id="institutionName">-</span>
+                        </div>
+
+                        <div>
+                            <label>Email</label>
+                            <span id="email">-</span>
+                        </div>
+
+                    </div>
+
+                    <button id="downloadCertificate" class="download-btn">
+                        <i class="ri-download-2-line"></i>
+                        <span>Download Certificate</span>
+                    </button>
+
+                </div>
+
+                <!-- Progress -->
+                <div class="panel progress-panel">
+
+                    <h2>
+                        <i class="ri-pie-chart-2-line"></i>
+                        Accessibility Progress
+                    </h2>
+
+                    <div class="circle" id="progressCircle">
+
+                        <div class="inside" >
+
+                            <span id="circlePercentage">0%</span>
+                            <small id="completedTests">
+                                3 of 4
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+        </div>
+
+        <!-------section for support--->
+
+        <div id="support" class="page ">
+            <div class="support-page">
+                <div class="support-cards">
+                    <h2 class="support-title">How can we <span>help </span>?</h2>
+                    <div class="card1">
+                        <i class="ri-whatsapp-line s-icons"></i>
+                        <span class="message normal" >Chat on WhatsApp</span>
+                        <span class="message hover" >+254-759-795-947</span>
+                        <i class="ri-arrow-right-long-line s-icons"></i>
+                    </div>
+                    <div class="card1">
+                        <i class="ri-chat-1-line s-icons"></i>
+                        <span class="message normal" >Chat on SMS</span>
+                        <span class="message hover" >0722-418-338</span>
+                        <i class="ri-arrow-right-long-line s-icons"></i></div>
+
+                    <div class="card1">
+                        <i class="ri-instagram-line s-icons"></i>
+                        <span class="message normal" >Direct Message on Instagram</span>
+                        <span class="message hover" >@betaabilities</span>
+                        <i class="ri-arrow-right-long-line s-icons"></i>
+                    </div>
+
+                    <div class="card1">
+                        <i class="ri-mail-send-line s-icons"></i>
+                        <span class="message normal" >Send us an Email</span>
+                        <span class="message hover" >betaabilities@kenya.ac.ke</span>
+                        <i class="ri-arrow-right-long-line s-icons"></i>
+                    </div>
+
+                    <div class="card1">
+                        <i class="ri-map-pin-line s-icons"></i>
+                        <span class="message normal" >Visit our Locations</span>
+                        <span class="message hover" >Nakuru | Nairobi | Mombasa</span>
+                        <i class="ri-arrow-right-long-line s-icons"></i>
+                    </div>
+
+                </div>
+
+                <div class="support-img">
+                    <img class="support-img" src="media/betapics/customer3.jpg" alt="">  </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+</div>
+</div>
+
+</body>
+<script type="module" src="certification.js" ></script>
+<script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+<script src="index.js"></script>
+</html>

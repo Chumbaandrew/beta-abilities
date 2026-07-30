@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+<!--    icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="styles.css" >
+    <script type="module" src="firebase-auth.js"></script>
+</head>
+<body>
+<section class="login">
+    <div class="login__content">
+
+        <!-- Forms -->
+        <div class="forms">
+
+            <!-- Login -->
+            <div class="log__in active">
+
+                <header>Welcome, Organization!<i class="ri-service-line"></i></header>
+
+                <form class="login__form">
+
+                    <div class="login__group">
+
+                        <div class="login__box">
+                            <i class="ri-user-line login__icon"></i>
+                            <input type="text" class="login__input" id="org" autocomplete="name" required placeholder="">
+                            <label for="org" class="login__label">Organization</label>
+                        </div>
+
+                        <div class="login__box">
+                            <i class="ri-mail-line login__icon"></i>
+                            <input type="email" class="login__input" id="omail" autocomplete="email" required placeholder="">
+                            <label for="omail" class="login__label">Email</label>
+                        </div>
+
+                        <div class="login__box">
+                            <i class="ri-lock-line login__icon"></i>
+                            <input type="password" class="login__input" id="opassword" autocomplete="current-password" required placeholder="">
+                            <label for="opassword" class="login__label">Password</label>
+                        </div>
+
+                    </div>
+
+                    <a onclick="forgot()"  href="#" class="login__forgot">Forgot Password?</a>
+
+                    <button type="submit" id="ologin-btn" class="login__button">
+                        LOG IN <i class="ri-send-plane-2-line"></i>
+                    </button>
+
+                    <span class="login__forgot">
+                        Don't have an account?
+                        <a href="#" class="signup-link signup">Sign Up</a>
+                    </span>
+
+                </form>
+
+                <div class="logos">
+                    <i class="ri-google-line"></i>
+                    <i class="ri-apple-line"></i>
+                    <i class="ri-windows-line"></i>
+                    <i class="ri-meta-line"></i>
+                    <i class="ri-instagram-line"></i>
+                    <i class="ri-twitter-x-line"></i>
+                    <i class="ri-figma-line"></i>
+                </div>
+
+            </div>
+
+            <!-- Signup -->
+            <div class="sign__up">
+
+                <header>Create your account <i class="ri-service-line"></i></header>
+
+                <form class="login__form">
+
+                    <div class="login__group">
+
+                        <div class="login__box">
+                            <i class="ri-user-line login__icon"></i>
+                            <input type="text" class="login__input" id="s-org" autocomplete="name" required placeholder="">
+                            <label for="s-org" class="login__label">Organization</label>
+                        </div>
+
+                        <div class="login__box">
+                            <i class="ri-mail-line login__icon"></i>
+                            <input type="email" class="login__input" id="so-mail" autocomplete="email" required placeholder="">
+                            <label for="so-mail" class="login__label">Email</label>
+                        </div>
+
+                        <div class="login__box">
+                            <i class="ri-lock-line login__icon"></i>
+                            <input type="password" class="login__input" id="so-password" autocomplete="current-password" required placeholder="">
+                            <label for="so-password" class="login__label">Password</label>
+                        </div>
+
+                    </div>
+
+                    <button type="submit" id="osign-btn" class="login__button">
+                        SIGN UP <i class="ri-send-plane-2-line"></i>
+                    </button>
+
+                    <span class="login__forgot">
+                        Already have an account?
+                        <a href="#" class="login-link signup" >Log In</a>
+                    </span>
+
+                </form>
+                <div class="logos">
+                    <i class="ri-google-line"></i>
+                    <i class="ri-apple-line"></i>
+                    <i class="ri-windows-line"></i>
+                    <i class="ri-meta-line"></i>
+                    <i class="ri-instagram-line"></i>
+                    <i class="ri-twitter-x-line"></i>
+                    <i class="ri-figma-line"></i>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Image -->
+        <div class="login__image">
+            <img src="media/betalogin6.jpg" class="login__img">
+        </div>
+
+    </div>
+</section>
+</body>
+<script src="index.js" ></script>
+<script >
+//login slider
+const loginForm = document.querySelector(".log__in");
+const signupForm = document.querySelector(".sign__up");
+
+const signupLink = document.querySelector(".signup-link");
+const loginLink = document.querySelector(".login-link");
+
+signupLink.addEventListener("click",(e)=>{
+
+e.preventDefault();
+
+loginForm.classList.remove("active");
+signupForm.classList.add("active");
+
+});
+
+loginLink.addEventListener("click",(e)=>{
+
+e.preventDefault();
+
+signupForm.classList.remove("active");
+loginForm.classList.add("active");
+
+});
+</script>
+</html>

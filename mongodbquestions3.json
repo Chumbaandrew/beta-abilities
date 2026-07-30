@@ -1,0 +1,421 @@
+[{
+  "_id": {
+    "$oid": "6a5a062f6ce04a228cf2e294"
+  },
+  "questionNo": 1,
+  "question": "1. Disability Mainstreaming comittee with 30% representation of PWD.",
+  "type": "yes_no",
+  "section": "Policies",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a5a062f6ce04a228cf2e295"
+  },
+  "questionNo": 2,
+  "question": "2. Reservation of 5% of all elective and appointive positions to PWD.",
+  "type": "yes_no",
+  "section": "Policies",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a5a062f6ce04a228cf2e296"
+  },
+  "questionNo": 3,
+  "question": "3. Staff educated on National disability mainstreaming policies and procedures.",
+  "type": "yes_no",
+  "section": "Policies",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a5a062f6ce04a228cf2e297"
+  },
+  "questionNo": 4,
+  "question": "4. Equal opportunities for PWD in the employment process. Pick any or all if available : ",
+  "type": "checkbox",
+  "options": [
+    {
+      "text": "Advertising - PWD are encouraged to apply",
+      "score": 2
+    },
+    {
+      "text": "Interviewing - conducted in disability inclusive locations",
+      "score": 2
+    },
+    {
+      "text": "Recruitment - ensure non-discrimination",
+      "score": 2
+    }
+  ],
+  "section": "Policies"
+},
+{
+  "_id": {
+    "$oid": "6a5e3ccd7e1d24a4c5f66e93"
+  },
+  "questionNo": 5,
+  "question": "1. Audio players and recorders .",
+  "type": "yes_no",
+  "section": "Visual",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a5e3ccd7e1d24a4c5f66e94"
+  },
+  "questionNo": 6,
+  "question": "2. Voice recognition programs",
+  "type": "yes_no",
+  "section": "Visual",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a5e402aa3f160800da86247"
+  },
+  "questionNo": 7,
+  "question": "3. Talking calculators",
+  "type": "yes_no",
+  "section": "Visual",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a5e402aa3f160800da86248"
+  },
+  "questionNo": 8,
+  "question": "4. Magnifying devices",
+  "type": "yes_no",
+  "section": "Visual",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a5e4231a3f160800da86249"
+  },
+  "questionNo": 9,
+  "question": "5. Personal electronic navigation aids",
+  "type": "yes_no",
+  "section": "Visual",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a5e459ba3f160800da8624c"
+  },
+  "questionNo": 10,
+  "question": "1. Assistive listening devices e.g Hearing aids",
+  "type": "yes_no",
+  "section": "Hearing",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a5e459ba3f160800da8624d"
+  },
+  "questionNo": 11,
+  "question": "2. IEC materials in visual and sign language",
+  "type": "yes_no",
+  "section": "Hearing",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a5e459ba3f160800da8624e"
+  },
+  "questionNo": 12,
+  "question": "3. Telecommunication devices for the deaf e.g vibrating papers, teletypewriters e.t.c",
+  "type": "yes_no",
+  "section": "Hearing",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a5e459ba3f160800da8624f"
+  },
+  "questionNo": 13,
+  "question": "4. Strobe light smoke detectors",
+  "type": "yes_no",
+  "section": "Hearing",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a64520f6969807b312fff67"
+  },
+  "questionNo": 14,
+  "question": "1. Are there designated parking bays for people with disabilities",
+  "section": "Adaptations",
+  "type": "yes_no",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a64520f6969807b312fff68"
+  },
+  "question": "2. Is the designated parking not more than 50m from the main entrance to the building?",
+  "questionNo": 15,
+  "section": "Adaptations",
+  "type": "yes_no",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a64520f6969807b312fff69"
+  },
+  "questionNo": 16,
+  "question": "3. Is there a bus stop in the vicinity (within 50m)?",
+  "section": "Adaptations",
+  "type": "yes_no",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a6460ecde796fe4704bbca7"
+  },
+  "questionNo": 17,
+  "question": "4. Is the route to the main entrance clearly signed and is it suitable for wheelchair users?(paved paths and ramps where necessary)",
+  "section": "Adaptations",
+  "type": "yes_no",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a6460ecde796fe4704bbca8"
+  },
+  "questionNo": 18,
+  "question": "5. Are there dropped kerbs where necessary?",
+  "section": "Adaptations",
+  "type": "yes_no",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a6460ecde796fe4704bbca9"
+  },
+  "questionNo": 19,
+  "question": "6. Is the Main entrance stepped: Pick any descriptions:",
+  "section": "Adaptations",
+  "type": "checkbox",
+  "options": [
+    {
+      "text": "The rise of the steps 170mm or less.",
+      "score": 2
+    },
+    {
+      "text": "The height of each flight of stairs less than 1530mm.",
+      "score": 2
+    },
+    {
+      "text": "There is a tactile warning strip at the top.",
+      "score": 2
+    },
+    {
+      "text": "The handrails continuous on both sides.",
+      "score": 2
+    },
+    {
+      "text": "The handrails extend 300mm past the top and bottom steps.",
+      "score": 2
+    },
+    {
+      "text": "There is a ramp alongside the steps",
+      "score": 2
+    },
+    {
+      "text": "The gradient of the ramp is not steeper than 1:12",
+      "score": 2
+    },
+    {
+      "text": "There is a level platform at the top of the ramp",
+      "score": 2
+    },
+    {
+      "text": "There is a lift in the building",
+      "score": 2
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a64654dde796fe4704bbcaa"
+  },
+  "questionNo": 20,
+  "question": "7. Is at least part of the reception desk at a wheelchair accessible height – 1200mm from the floor?",
+  "type": "yes_no",
+  "section": "Adaptations",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a64654dde796fe4704bbcab"
+  },
+  "questionNo": 21,
+  "question": "8. Is there a hearing induction loop or other amplifying device fitted in reception?",
+  "type": "yes_no",
+  "section": "Adaptations",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a64654dde796fe4704bbcac"
+  },
+  "questionNo": 22,
+  "question": "9. Is there any seating in the waiting area?",
+  "type": "yes_no",
+  "section": "Adaptations",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a64654dde796fe4704bbcad"
+  },
+  "questionNo": 23,
+  "question": "10. If there are seats, is there a mix of seats with arms and seats without arms?",
+  "type": "yes_no",
+  "section": "Adaptations",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a64654dde796fe4704bbcae"
+  },
+  "questionNo": 24,
+  "question": "11. Do all internal doors give a minimum clear opening width of 750mm?",
+  "type": "yes_no",
+  "section": "Adaptations",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a64654dde796fe4704bbcaf"
+  },
+  "questionNo": 25,
+  "question": "12. Is the door furniture at a reasonable height – 1200mm from the floor?",
+  "type": "yes_no",
+  "section": "Adaptations",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a6467aede796fe4704bbcb0"
+  },
+  "questionNo": 26,
+  "question": "13. Is there a vision panel at a wheelchair height?",
+  "type": "yes_no",
+  "section": "Adaptations",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a6467aede796fe4704bbcb1"
+  },
+  "questionNo": 27,
+  "question": "14. Are there any internal ramps in the building?",
+  "type": "yes_no",
+  "section": "Adaptations",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a6467aede796fe4704bbcb2"
+  },
+  "questionNo": 28,
+  "question": "15. If kitchen or canteen facilities are available, are they at a wheelchair accessible height?",
+  "type": "yes_no",
+  "section": "Adaptations",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+},
+{
+  "_id": {
+    "$oid": "6a6467aede796fe4704bbcb3"
+  },
+  "questionNo": 29,
+  "question": "16. Is there a wheelchair accessible toilet cubicle?",
+  "type": "yes_no",
+  "section": "Adaptations",
+  "scores": {
+    "Yes": 2,
+    "No": 0
+  }
+}]
