@@ -161,7 +161,7 @@ onAuthStateChanged(auth, async (user) => {
         `${completionPercentage}%`;
 
     document.getElementById("completedTests").textContent =
-        `${completed} of 4 Completed`;
+        `${completed} of 4 Done`;
 
     // -------------------------
     // Certificate Button

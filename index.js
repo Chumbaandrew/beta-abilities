@@ -139,6 +139,21 @@ menuItems.forEach(item => {
 
 });
 
+const retakeBtn = document.getElementById("retakeBtn");
+
+if (retakeBtn) {
+
+    retakeBtn.addEventListener("click", function (e) {
+
+        e.preventDefault();
+
+        sessionStorage.setItem("currentPage", "billing");
+        showPage("billing");
+
+    });
+
+}
+
 // Open the saved page after redirect
 const savedPage = sessionStorage.getItem("currentPage");
 
