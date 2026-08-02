@@ -1,7 +1,6 @@
 
-const { stkPush } = require("./services/darajaService");
+const {stkPush} = require("./services/darajaService");
 const { getAccessToken } = require("./services/darajaService");
-
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -9,15 +8,18 @@ const admin = require("firebase-admin");
 
 dotenv.config();
 
+const { initializeApp, cert } = require("firebase-admin/app");
+const { getFirestore } = require("firebase-admin/firestore");
+
 const serviceAccount = JSON.parse(
     process.env.FIREBASE_SERVICE_ACCOUNT
 );
 
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
+initializeApp({
+    credential: cert(serviceAccount),
 });
 
-const db = admin.firestore();
+const db = getFirestore();
 
 
 
