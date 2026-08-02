@@ -51,7 +51,7 @@ billingForm.addEventListener("submit", async (e) => {
     try {
 
         const response = await fetch(
-            "http://localhost:3000/stkpush",
+            "https://beta-abilities.onrender.com/stkpush",
             {
 
                 method: "POST",

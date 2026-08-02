@@ -1,6 +1,6 @@
 async function loadQuestions() {
 
-    const response = await fetch("http://localhost:3000/questions");
+    const response = await fetch("https://beta-abilities.onrender.com/questions");
     const questions = await response.json();
 
     console.log(questions);
@@ -72,7 +72,7 @@ document.getElementById("submitBtn").addEventListener("click", async function(e)
     const answers = [];
 
     // Get the questions again
-    const response = await fetch("http://localhost:3000/questions");
+    const response = await fetch("https://beta-abilities.onrender.com/questions");
     const questions = await response.json();
 
 //for each question, check the type and get the selected answer
@@ -106,7 +106,7 @@ document.getElementById("submitBtn").addEventListener("click", async function(e)
 
 //send the answers to the server 
 
-    await fetch("http://localhost:3000/submit", {
+    await fetch("https://beta-abilities.onrender.com/submit", {
 
         method: "POST",
 
