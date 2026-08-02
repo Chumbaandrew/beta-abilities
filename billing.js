@@ -1,4 +1,15 @@
-import { auth } from "./firebase-config.js";
+import {
+
+    auth,
+
+    db,
+
+    doc,
+
+    onSnapshot
+
+} from "./firebase-config.js";
+
 const billingForm = document.getElementById("billingForm");
 
 billingForm.addEventListener("submit", async (e) => {
@@ -6,6 +17,7 @@ billingForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const payBtn = document.getElementById("payBtn");
+
     let phone = document
         .getElementById("phone")
         .value
@@ -24,8 +36,6 @@ billingForm.addEventListener("submit", async (e) => {
 
     }
 
-    console.log(phone);
-
     if (!phone) {
 
         alert("Please enter your phone number.");
@@ -36,8 +46,7 @@ billingForm.addEventListener("submit", async (e) => {
 
     payBtn.disabled = true;
 
-    payBtn.innerHTML =
-        "Sending Request...";
+    payBtn.innerHTML = "Sending Request...";
 
     try {
 
@@ -49,32 +58,86 @@ billingForm.addEventListener("submit", async (e) => {
 
                 headers: {
 
-                    "Content-Type":
-                        "application/json"
+                    "Content-Type": "application/json"
 
                 },
 
                 body: JSON.stringify({
+
                     uid: auth.currentUser.uid,
+
                     phone,
+
                     amount: 1
+
                 })
 
             }
 
         );
 
-        const data =
-            await response.json();
+        const data = await response.json();
 
         console.log(data);
 
-        alert(
-            "📱 Check your phone for the M-Pesa prompt."
+        if (!response.ok) {
+
+            throw new Error(data.error || "Payment request failed.");
+
+        }
+
+        const paymentId = data.paymentId;
+
+        alert("📱 Check your phone for the M-Pesa prompt.");
+
+        payBtn.innerHTML = "Waiting for Payment...";
+
+        // Listen for payment updates
+        const paymentRef = doc(
+
+            db,
+
+            "payments",
+
+            paymentId
+
         );
 
-        payBtn.innerHTML =
-            "Waiting for Payment...";
+        const unsubscribe = onSnapshot(paymentRef, (snapshot) => {
+
+            if (!snapshot.exists()) return;
+
+            const payment = snapshot.data();
+
+            console.log("Payment Update:", payment);
+
+            if (payment.status === "success") {
+
+                unsubscribe();
+
+                payBtn.innerHTML = "Payment Successful ✅";
+
+                setTimeout(() => {
+
+                    resetAssessmentUI(payBtn);
+
+                }, 1500);
+
+            }
+
+            else if (payment.status === "failed") {
+
+                unsubscribe();
+
+                alert("❌ Payment failed.");
+
+                payBtn.disabled = false;
+
+                payBtn.innerHTML = "Pay KSh 1";
+
+            }
+
+        });
 
     }
 
@@ -82,15 +145,25 @@ billingForm.addEventListener("submit", async (e) => {
 
         console.error(error);
 
-        alert(
-            "Something went wrong."
-        );
+        alert("Something went wrong.");
 
         payBtn.disabled = false;
 
-        payBtn.innerHTML =
-            "Pay KSh 1";
+        payBtn.innerHTML = "Pay KSh 1";
 
     }
 
 });
+
+async function resetAssessmentUI(payBtn) {
+
+    payBtn.disabled = false;
+
+    payBtn.innerHTML = "Pay KSh 1";
+
+    showPage("home");
+
+    await loadDashboard(auth.currentUser);
+    window.refreshCertificationDashboard = refreshDashboard;
+
+}

@@ -89,7 +89,13 @@ app.post("/stkpush", async (req, res) => {
 
         });
 
-        res.json(response);
+        res.json({
+
+            ...response,
+
+            paymentId: paymentRef.id
+
+        });
 
     }
 

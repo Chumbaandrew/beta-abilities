@@ -11,138 +11,152 @@ import {
 
 
 // =====================================
-// Load Assessment Results
+// Constants
+// =====================================
+
+const TOTAL_ASSESSMENTS = 4;
+
+const assessmentPages = {
+
+    physical: "physicalimpairment.html",
+
+    visual: "visuallyimpaired.html",
+
+    auditory: "hearingimpaired.html",
+
+    policies: "policiesandprocedures.html"
+
+};
+
+
+// =====================================
+// Load One Assessment Card
 // =====================================
 
 async function loadAssessment(userId, category) {
 
     const assessmentRef = doc(
+
         db,
+
         "institutions",
+
         userId,
+
         "assessments",
+
         category
+
     );
 
     const assessmentSnap = await getDoc(assessmentRef);
 
-    if (!assessmentSnap.exists()) {
-        return false;
-    }
+    const score =
+        document.getElementById(`${category}Score`);
 
-    const data = assessmentSnap.data();
+    const percentage =
+        document.getElementById(`${category}Percentage`);
 
-    document.getElementById(`${category}Score`).textContent =
-        `${data.score}/${data.totalQuestions}`;
+    const rating =
+        document.getElementById(`${category}Rating`);
 
-    document.getElementById(`${category}Percentage`).textContent =
-        `${data.percentage}%`;
+    const status =
+        document.getElementById(`${category}Status`);
 
-    document.getElementById(`${category}Rating`).textContent =
-        data.rating;
-
-    const assessmentLink =
+    const button =
         document.getElementById(`${category}Btn`);
 
-    if (assessmentLink) {
 
-        assessmentLink.innerHTML =
-            `Results <i class="ri-eye-line"></i>`;
 
-        assessmentLink.classList.add("completed");
+    // =====================================
+    // Assessment NOT completed
+    // =====================================
 
-        assessmentLink.href = "#";
+    if (!assessmentSnap.exists()) {
 
-        assessmentLink.addEventListener("click", function (e) {
+        score.textContent = "--/10";
 
-            e.preventDefault();
+        percentage.textContent = "--%";
 
-            sessionStorage.setItem("currentPage", "certification");
+        rating.textContent = "--";
 
-            window.location.href = "institute_page.html";
+        status.innerHTML =
+            `<i class="ri-time-line"></i> 10min`;
 
-        });
+        status.classList.remove("completed-status");
 
-        const status =
-            document.getElementById(`${category}Status`);
+        button.innerHTML =
+            `Start <i class="ri-arrow-right-line"></i>`;
 
-        if (status) {
+        button.classList.remove("completed");
 
-            status.innerHTML =
-                `<i class="ri-check-line"></i> Done`;
+        button.href =
+            assessmentPages[category];
 
-            status.classList.add("completed-status");
+        button.onclick = null;
 
-        }
-
+        return false;
 
     }
+
+
+
+    // =====================================
+    // Assessment completed
+    // =====================================
+
+    const data =
+        assessmentSnap.data();
+
+    score.textContent =
+        `${data.score}/${data.totalQuestions}`;
+
+    percentage.textContent =
+        `${data.percentage}%`;
+
+    rating.textContent =
+        data.rating;
+
+    status.innerHTML =
+        `<i class="ri-check-line"></i> Done`;
+
+    status.classList.add("completed-status");
+
+    button.innerHTML =
+        `Results <i class="ri-eye-line"></i>`;
+
+    button.classList.add("completed");
+
+    button.href = "#";
+
+    button.onclick = function (e) {
+
+        e.preventDefault();
+
+        sessionStorage.setItem(
+
+            "currentPage",
+
+            "certification"
+
+        );
+
+        window.location.href =
+            "institute_page.html";
+
+    };
 
     return true;
 
 }
-
-
 // =====================================
-// Load Dashboard
+// Update Progress Circle
 // =====================================
 
-onAuthStateChanged(auth, async (user) => {
-
-    if (!user) return;
-
-    // -------------------------
-    // Institution Details
-    // -------------------------
-
-    const institutionRef = doc(
-        db,
-        "institutions",
-        user.uid
-    );
-
-    const institutionSnap =
-        await getDoc(institutionRef);
-
-    if (institutionSnap.exists()) {
-
-        const institution =
-            institutionSnap.data();
-
-        document.getElementById("institutionName").textContent =
-            institution.name;
-
-        document.getElementById("email").textContent =
-            institution.email;
-
-    }
-
-    // -------------------------
-    // Load Assessments
-    // -------------------------
-
-    let completed = 0;
-
-    if (await loadAssessment(user.uid, "physical"))
-        completed++;
-
-    if (await loadAssessment(user.uid, "visual"))
-        completed++;
-
-    if (await loadAssessment(user.uid, "auditory"))
-        completed++;
-
-    if (await loadAssessment(user.uid, "policies"))
-        completed++;
-
-    console.log("Completed:", completed);
-
-    // -------------------------
-    // Progress Circle
-    // -------------------------
+function updateProgressCircle(completed) {
 
     const completionPercentage =
-        (completed / 4) * 100;
+        (completed / TOTAL_ASSESSMENTS) * 100;
 
     const degrees =
         completionPercentage * 3.6;
@@ -157,20 +171,32 @@ onAuthStateChanged(auth, async (user) => {
         )
     `;
 
-    document.getElementById("circlePercentage").textContent =
+    document.getElementById(
+        "circlePercentage"
+    ).textContent =
         `${completionPercentage}%`;
 
-    document.getElementById("completedTests").textContent =
-        `${completed} of 4 Done`;
+    document.getElementById(
+        "completedTests"
+    ).textContent =
+        `${completed} of ${TOTAL_ASSESSMENTS} Done`;
 
-    // -------------------------
-    // Certificate Button
-    // -------------------------
+}
+
+
+
+// =====================================
+// Update Certificate Button
+// =====================================
+
+function updateCertificateButton(completed) {
 
     const downloadBtn =
-        document.getElementById("downloadCertificate");
+        document.getElementById(
+            "downloadCertificate"
+        );
 
-    if (completed === 4) {
+    if (completed === TOTAL_ASSESSMENTS) {
 
         downloadBtn.disabled = false;
 
@@ -179,37 +205,151 @@ onAuthStateChanged(auth, async (user) => {
             <span>Download Certificate</span>
         `;
 
-        if (sessionStorage.getItem("certificateUnlocked") === "true") {
+        downloadBtn.onclick = async () => {
+
+            await generateCertificate();
+
+        };
+
+        // Only congratulate once
+
+        if (
+
+            sessionStorage.getItem(
+                "certificateUnlocked"
+            ) === "true"
+
+        ) {
 
             alert(
+
                 "🎉 Congratulations!\n\n" +
+
                 "You have successfully completed all accessibility assessments.\n\n" +
+
                 "Your certificate is now available."
+
             );
 
-            sessionStorage.removeItem("certificateUnlocked");
+            sessionStorage.removeItem(
+                "certificateUnlocked"
+            );
 
         }
-
-        downloadBtn.onclick = generateCertificate;
 
     }
 
     else {
 
-        const remaining = 4 - completed;
+        const remaining =
+            TOTAL_ASSESSMENTS - completed;
 
         downloadBtn.disabled = true;
 
         downloadBtn.innerHTML = `
             <i class="ri-lock-line"></i>
-            <span>Complete ${remaining} more assessment${remaining > 1 ? "s" : ""}</span>
+            <span>
+                Complete ${remaining}
+                more assessment${remaining > 1 ? "s" : ""}
+            </span>
         `;
+
+        downloadBtn.onclick = null;
 
     }
 
-});
+}
 
+
+
+// =====================================
+// Load Dashboard
+// =====================================
+
+async function loadDashboard(user) {
+
+    // -------------------------
+    // Institution Information
+    // -------------------------
+
+    const institutionRef = doc(
+
+        db,
+
+        "institutions",
+
+        user.uid
+
+    );
+
+    const institutionSnap =
+        await getDoc(institutionRef);
+
+    if (institutionSnap.exists()) {
+
+        const institution =
+            institutionSnap.data();
+
+        document.getElementById(
+            "institutionName"
+        ).textContent =
+            institution.name;
+
+        document.getElementById(
+            "email"
+        ).textContent =
+            institution.email;
+
+    }
+
+
+
+    // -------------------------
+    // Load Assessments
+    // -------------------------
+
+    let completed = 0;
+
+    const assessments = [
+
+        "physical",
+
+        "visual",
+
+        "auditory",
+
+        "policies"
+
+    ];
+
+    for (const category of assessments) {
+
+        const exists =
+            await loadAssessment(
+
+                user.uid,
+
+                category
+
+            );
+
+        if (exists)
+
+            completed++;
+
+    }
+
+
+
+    // -------------------------
+    // Update Dashboard
+    // -------------------------
+
+    updateProgressCircle(completed);
+
+    updateCertificateButton(completed);
+
+}
 
 // =====================================
 // Generate Certificate
@@ -217,83 +357,258 @@ onAuthStateChanged(auth, async (user) => {
 
 async function generateCertificate() {
 
-    const existingPdfBytes = await fetch(
-        "certificates/beta-certificate.pdf"
-    ).then(res => res.arrayBuffer());
+    try {
 
-    const pdfDoc =
-        await PDFLib.PDFDocument.load(existingPdfBytes);
+        // Load certificate template
+        const existingPdfBytes = await fetch(
+            "certificates/beta-certificate.pdf"
+        ).then(res => res.arrayBuffer());
 
-    const page =
-        pdfDoc.getPages()[0];
+        const pdfDoc =
+            await PDFLib.PDFDocument.load(existingPdfBytes);
 
-    const font =
-        await pdfDoc.embedFont(
-            PDFLib.StandardFonts.TimesRoman
+        const page =
+            pdfDoc.getPages()[0];
+
+        const font =
+            await pdfDoc.embedFont(
+                PDFLib.StandardFonts.TimesRoman
+            );
+
+
+
+        // -------------------------
+        // Dashboard Values
+        // -------------------------
+
+        const institution =
+            document.getElementById(
+                "institutionName"
+            ).textContent;
+
+        const completed =
+            document.getElementById(
+                "completedTests"
+            ).textContent;
+
+
+
+        // -------------------------
+        // Institution Name
+        // -------------------------
+
+        page.drawText(institution, {
+
+            x: 180,
+
+            y: 445,
+
+            size: 25,
+
+            font,
+
+            color: PDFLib.rgb(
+                51 / 255,
+                51 / 255,
+                51 / 255
+            )
+
+        });
+
+
+
+        // -------------------------
+        // Completion Status
+        // -------------------------
+
+        page.drawText(completed, {
+
+            x: 115,
+
+            y: 230,
+
+            size: 20,
+
+            font,
+
+            color: PDFLib.rgb(
+                51 / 255,
+                51 / 255,
+                51 / 255
+            )
+
+        });
+
+
+
+        // -------------------------
+        // Date
+        // -------------------------
+
+        const today =
+            new Date().toLocaleDateString();
+
+        page.drawText(today, {
+
+            x: 470,
+
+            y: 115,
+
+            size: 12,
+
+            font,
+
+            color: PDFLib.rgb(
+                0.3,
+                0.3,
+                0.3
+            )
+
+        });
+
+
+
+        // -------------------------
+        // Save PDF
+        // -------------------------
+
+        const pdfBytes =
+            await pdfDoc.save();
+
+        const blob =
+            new Blob(
+                [pdfBytes],
+                {
+                    type: "application/pdf"
+                }
+            );
+
+        const url =
+            URL.createObjectURL(blob);
+
+        const a =
+            document.createElement("a");
+
+        a.href = url;
+
+        a.download =
+            `${institution} Accessibility Certificate.pdf`;
+
+        document.body.appendChild(a);
+
+        a.click();
+
+        a.remove();
+
+        URL.revokeObjectURL(url);
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Unable to generate certificate."
         );
 
-    const institution =
-        document.getElementById("institutionName").textContent;
-
-    const completed =
-        document.getElementById("completedTests").textContent;
-
-    page.drawText(institution, {
-
-        x: 180,
-        y: 445,
-
-        size: 25,
-
-        font,
-
-        color: PDFLib.rgb(
-            51 / 255,
-            51 / 255,
-            51 / 255
-        )
-
-    });
-
-    page.drawText(completed, {
-
-        x: 115,
-        y: 230,
-
-        size: 20,
-
-        font,
-
-        color: PDFLib.rgb(
-            51 / 255,
-            51 / 255,
-            51 / 255
-        )
-
-    });
-
-    const pdfBytes =
-        await pdfDoc.save();
-
-    const blob =
-        new Blob(
-            [pdfBytes],
-            { type: "application/pdf" }
-        );
-
-    const url =
-        URL.createObjectURL(blob);
-
-    const a =
-        document.createElement("a");
-
-    a.href = url;
-
-    a.download =
-        `${institution} Accessibility Certificate.pdf`;
-
-    a.click();
-
-    URL.revokeObjectURL(url);
+    }
 
 }
+
+// =====================================
+// Refresh Dashboard
+// =====================================
+
+async function refreshDashboard() {
+
+    if (!auth.currentUser) return;
+
+    await loadDashboard(auth.currentUser);
+
+}
+
+
+
+// =====================================
+// Payment Reset Support
+// =====================================
+
+window.refreshCertificationDashboard =
+    refreshDashboard;
+
+
+
+// =====================================
+// Authentication
+// =====================================
+
+onAuthStateChanged(auth, async (user) => {
+
+    if (!user) {
+
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
+
+    await loadDashboard(user);
+
+});
+
+
+
+// =====================================
+// Page Visibility Refresh
+// =====================================
+
+// If the user comes back to this page,
+// automatically refresh everything.
+
+document.addEventListener(
+
+    "visibilitychange",
+
+    async () => {
+
+        if (
+
+            document.visibilityState === "visible" &&
+
+            auth.currentUser
+
+        ) {
+
+            await refreshDashboard();
+
+        }
+
+    }
+
+);
+
+
+
+// =====================================
+// Window Focus Refresh
+// =====================================
+
+// Refresh when the browser tab gains focus.
+
+window.addEventListener(
+
+    "focus",
+
+    async () => {
+
+        if (auth.currentUser) {
+
+            await refreshDashboard();
+
+        }
+
+    }
+
+);
